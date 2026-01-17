@@ -1850,7 +1850,6 @@
 <!-- HERO SECTION -->
     <section id="hero" class="relative hero-stage w-full flex items-center justify-center overflow-hidden">
         <video autoplay muted loop playsinline preload="auto" src="/media/homepage-hero.mp4" class="hero-video-full"></video>
-        <div class="absolute inset-0 hero-video-tint"></div>
         <div class="absolute bottom-0 left-0 z-10 p-6 max-w-md">
             <h1 class="text-3xl md:text-4xl font-black uppercase tracking-tighter leading-[0.85] text-white mb-4">PREDICTING <br> THE UNSEEN.</h1>
             <p class="text-white/80 text-xs font-light leading-relaxed uppercase tracking-wider mb-6">AVZDAX <span class="font-bold text-white">PEACETECH</span> is the global standard in predictive surveillance. We build the neural infrastructure that secures civilizations.</p>
@@ -2162,50 +2161,54 @@
             </div>
             <div class="text-left">
                 <h4 class="text-white/50 text-[10px] font-mono font-black uppercase tracking-[0.7em] border-b border-white/5 pb-4 italic text-left">Mission</h4>
-                <div class="flex flex-col gap-6 text-[14px] font-black uppercase tracking-widest text-white text-left"><a href="#" class="footer-link-hover">About Us</a><a href="#" class="footer-link-hover font-black">Careers</a><a href="#" class="footer-link-hover">Newsroom</a><a href="#" class="footer-link-hover">Ethics Policy</a></div>
+                <div class="flex flex-col gap-6 text-[14px] font-black uppercase tracking-widest text-white text-left"><a href="#" class="footer-link-hover">About Us</a><a href="#" class="footer-link-hover font-black text-green-500">Careers</a><a href="#" class="footer-link-hover">Newsroom</a><a href="#" class="footer-link-hover">Ethics Policy</a></div>
             </div>
             <div class="text-left">
                 <h4 class="text-white/50 text-[10px] font-mono font-black uppercase tracking-[0.7em] border-b border-white/5 pb-4 italic text-left">Support</h4>
-                <div class="flex flex-col gap-6 text-[14px] font-black uppercase tracking-widest text-white text-left"><a href="#" class="footer-link-hover">Help Center</a><a href="#" class="footer-link-hover flex items-center gap-3">Status <span class="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span></a><a href="#" class="footer-link-hover">Privacy Policy</a><a href="#" class="footer-link-hover">Terms</a></div>
+                <div class="flex flex-col gap-6 text-[14px] font-black uppercase tracking-widest text-white text-left"><a href="#" class="footer-link-hover">Help Center</a><a href="#" class="footer-link-hover flex items-center gap-3">Status <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span></a><a href="#" class="footer-link-hover">Privacy Policy</a><a href="#" class="footer-link-hover">Terms</a></div>
             </div>
         </div>
 
         <div class="max-w-[1700px] mx-auto relative z-10 mt-40 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[9px] font-mono text-white/30 uppercase tracking-[0.5em] gap-8">
-            <div class="text-left"><div class="text-[11px] font-mono text-white animate-pulse uppercase tracking-[0.4em]">● GLOBAL NEURAL MESH: OPERATIONAL</div><div class="text-[10px] font-mono text-white/30 uppercase tracking-[0.3em]">Protocol_ID: AVX-7782-X // Enc: AES-4096-Sovereign</div></div>
+            <div class="text-left"><div class="text-[11px] font-mono text-green-500 animate-pulse uppercase tracking-[0.4em]">● GLOBAL NEURAL MESH: OPERATIONAL</div><div class="text-[10px] font-mono text-white/30 uppercase tracking-[0.3em]">Protocol_ID: AVX-7782-X // Enc: AES-4096-Sovereign</div></div>
             <div class="flex gap-12"><span>SV_HQ: 37.7749° N</span><span>LDN_NODE: 51.5074° N</span><span>LOS_NODE: 6.5244° N</span></div>
             <span>©2026 AVZDAX CORP. // ALL LOGS CLASSIFIED</span>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle functionality
-        document.addEventListener('DOMContentLoaded', function(){
+        // Mobile menu toggle functionality - More reliable for production
+        function initMobileMenu() {
             const btn = document.querySelector('.mobile-menu-toggle-modern');
             const overlay = document.getElementById('mobile-menu-overlay');
-            if(btn){
+
+            if(btn && overlay){
                 btn.addEventListener('click', function(e){
                     e.stopImmediatePropagation();
                     const opened = btn.classList.toggle('open');
                     btn.setAttribute('aria-expanded', opened ? 'true' : 'false');
-                    if(overlay) overlay.style.display = opened ? 'flex' : 'none';
+                    overlay.style.display = opened ? 'flex' : 'none';
                     document.body.style.overflow = opened ? 'hidden' : '';
                 });
-            }
-            function closeMobileMenu(){
-                if(!btn) return;
-                btn.classList.remove('open');
-                btn.setAttribute('aria-expanded','false');
-                if(overlay) overlay.style.display = 'none';
-                document.body.style.overflow = '';
-            }
-            if(overlay){
+
+                // Close menu when clicking overlay
                 overlay.addEventListener('click', function(e){
                     if(e.target === overlay){
-                        closeMobileMenu();
+                        btn.classList.remove('open');
+                        btn.setAttribute('aria-expanded','false');
+                        overlay.style.display = 'none';
+                        document.body.style.overflow = '';
                     }
                 });
             }
-        });
+        }
+
+        // Try to initialize immediately, fallback to DOMContentLoaded
+        if(document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initMobileMenu);
+        } else {
+            initMobileMenu();
+        }
 
         // Mobile menu: toggle nav dropdowns inside overlay
         document.addEventListener('DOMContentLoaded', function(){
