@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-black">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEST | THE HUMAN LAYER OF SOVEREIGN INTELLIGENCE | AVZDAX</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;700;900&family=JetBrains+Mono:wght@300;400;500&family=Syncopate:wght@700;800&display=swap');
+
+        :root {
+            --void: #030303; --white: #ffffff; --silver: #E5E5E7; --alloy: #86868B; --glass: rgba(255, 255, 255, 0.03);
+            --phosphor: #00FF41; --crimson: #FF003C;
+        }
+
+        body { font-family: 'Inter', sans-serif; background: var(--void); color: var(--white); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+        
+        /* TYPOGRAPHY */
+        .synco { font-family: 'Syncopate', sans-serif; text-transform: uppercase; letter-spacing: -0.08em; line-height: 0.8; }
+        .mono { font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.5em; }
+        .chrome-text { background: linear-gradient(to bottom, #fff 30%, var(--alloy) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* ISLAND NAV */
+        .island-nav { 
+            position: fixed; top: 24px; left: 50%; transform: translateX(-50%); 
+            width: 92%; max-width: 1400px; height: 60px; z-index: 10000; 
+            background: rgba(10, 10, 10, 0.7); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+            border: 1px solid var(--glass); border-radius: 4px; 
+            display: flex; justify-content: space-between; align-items: center; padding: 0 16px;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .nav-inverted { background: rgba(255, 255, 255, 0.9) !important; border-color: rgba(0,0,0,0.1) !important; box-shadow: 0 10px 40px rgba(0,0,0,0.05) !important; }
+        .nav-inverted .brand-logo, .nav-inverted .icon-box, .nav-inverted .synco { color: #000 !important; }
+        .nav-inverted .action-btn { background: #000 !important; color: #fff !important; border-color: #000 !important; }
+
+        /* SPATIAL SECTIONS */
+        section { position: relative; width: 100%; min-height: 100vh; display: flex; align-items: center; }
+
+        /* HERO CHAIN VIDEO */
+        .hero-vid-wrap { position: absolute; inset: 0; z-index: 0; overflow: hidden; filter: brightness(0.6); }
+        .hero-vid-wrap video { width: 100%; height: 100%; object-fit: cover; }
+
+        /* MOSAIC MAPPING */
+        .mosaic-container { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: minmax(100px, auto); gap: 32px; width: 100%; max-width: 1700px; margin: 0 auto; padding: 100px 40px; }
+        .m-block { background: var(--glass); border: 1px solid var(--glass); position: relative; overflow: hidden; }
+        .m-video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7) contrast(1.1); }
+        
+        .label-box { position: absolute; top: 20px; left: 20px; z-index: 10; background: rgba(0,0,0,0.7); padding: 8px 12px; border-left: 2px solid var(--phosphor); }
+
+        /* WHITE LABORATORY */
+        .lab-phase { background: var(--white); color: var(--void); }
+        .blueprint-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px); background-size: 40px 40px; z-index: 0; }
+
+        .typewriter-cursor::after { content: '█'; animation: blink 0.7s infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* FOOTER TITAN WATERMARK */
+        .footer-watermark { font-size: 28vw; font-weight: 900; color: rgba(255,255,255,0.02); pointer-events: none; white-space: nowrap; font-style: italic; letter-spacing: -0.05em; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 0; }
+        #footer-neural-canvas { position: absolute; inset: 0; opacity: 0.8; pointer-events: none; z-index: 1; }
+        .radiant-footer-border { height: 1px; width: 100%; background: linear-gradient(90deg, transparent, #fff, transparent); background-size: 200% 100%; animation: border-shimmer 4s infinite linear; }
+        @keyframes border-shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+        .footer-link-hover:hover { color: white; transform: translateX(10px); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+
+        .social-glass-btn {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+        .social-glass-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* FOOTER - MOBILE OPTIMIZED */
+        @media (max-width: 768px) {
+            #sovereign-footer { padding-top: 80px !important; padding-bottom: 40px !important; padding-left: 20px !important; padding-right: 20px !important; }
+            #sovereign-footer .grid { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 40px 20px !important; }
+            #sovereign-footer .lg\:col-span-2 { grid-column: span 2 !important; text-align: left !important; margin-bottom: 20px; }
+            #sovereign-footer img { display: none !important; }
+            #sovereign-footer p { font-size: 11px !important; line-height: 1.6; color: rgba(255, 255, 255, 0.6); max-width: 100% !important; letter-spacing: 0.2em !important; }
+            #sovereign-footer h4 { font-size: 9px !important; margin-bottom: 16px !important; color: rgba(255, 255, 255, 0.3) !important; }
+            #sovereign-footer .flex-col { gap: 12px !important; }
+            #sovereign-footer a.footer-link-hover { font-size: 11px !important; padding: 0 !important; background: transparent !important; letter-spacing: 0.15em !important; }
+            #sovereign-footer .footer-watermark { font-size: 35vw !important; opacity: 0.03 !important; }
+            #sovereign-footer .mt-40 { display: flex !important; flex-direction: column !important; align-items: flex-start !important; margin-top: 60px !important; padding-top: 30px !important; gap: 24px !important; text-align: left !important; }
+            #sovereign-footer .mt-40 .flex.gap-12 { flex-direction: column !important; gap: 8px !important; width: 100%; }
+        }
+    </style>
+
+</head>
+<body>
+<script src="header-footer.js"></script>
+
+    <div id="viewport">
+        
+        <!-- ACT 1: THE CHAIN OF VIGILANCE (HERO) -->
+        <section id="hero" class="h-screen">
+            <div class="hero-vid-wrap">
+                <!-- 8K Long-Take Surveillance Chain Video -->
+                <video autoplay muted loop playsinline src="media/nest_hero_chain.mp4"></video>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+            </div>
+            <div class="relative z-10 w-full px-20">
+                <div class="mono text-[10px] text-phosphor mb-6 tracking-[1.5em] reveal-text">Managed Strategic Overwatch</div>
+                <h1 class="synco text-[14vw] chrome-text leading-[0.75]" id="main-title">NEST</h1>
+                <div class="mt-20 max-w-2xl border-l border-white/10 pl-12 reveal-up">
+                    <p class="text-xl font-light text-silver/60 leading-relaxed uppercase tracking-widest">
+                        A sovereign alliance between **Machine Velocity** and **Human Discernment.** NEST is the definitive layer of operational peace for global assets.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACT 2: THE OPERATIONAL MOSAIC -->
+        <section class="bg-black py-40">
+            <div class="mosaic-container">
+                
+                <!-- 01: The Command Center Perspective -->
+                <div class="m-block col-span-8 h-[600px] reveal-up" style="transform: skewY(-2deg);">
+                    <div class="label-box mono text-[9px]">NODE_LAGOS_CENTRAL</div>
+                    <img src="media/nest-hero.png" class="w-full h-full object-cover scale-110" id="parallax-bg-1">
+                </div>
+
+                <!-- 02: High-Density Data Brief -->
+                <div class="col-span-4 flex flex-col justify-center pl-12 reveal-right">
+                    <div class="mono text-[10px] text-white/30 mb-8">// TASKFORCE DOSSIER</div>
+                    <h2 class="synco text-4xl mb-10">THE HUMAN<br>ANCHOR.</h2>
+                    <p class="text-sm text-silver/40 leading-loose uppercase tracking-widest mb-12">
+                        While algorithms process 2,400 patterns per second, the NEST Taskforce applies the **Nuance of Authority.** Our operators provide the high-stakes judgment required to secure Banana Island estates and Tier-1 infrastructure.
+                    </p>
+                    <div class="synco text-xl text-phosphor">99.9% ALERT SUPPRESSION</div>
+                </div>
+
+                <!-- 03: The Home-to-Office Incursion (Your Video) -->
+                <div class="m-block col-span-12 h-[700px] mt-20 reveal-up">
+                    <video autoplay muted loop playsinline src="media/obex_highlight_4.mp4" class="m-video"></video>
+                    <div class="absolute inset-0 bg-black/40"></div>
+                    <div class="absolute bottom-20 left-20 max-w-xl">
+                        <h3 class="synco text-5xl mb-6">REAL-TIME<br>OMNIPRESENCE.</h3>
+                        <p class="mono text-[10px] text-white/60 tracking-[0.4em]">Bridging the gap between the private domain and the commercial command center.</p>
+                    </div>
+                </div>
+
+                <!-- 04: Industrial Persistence -->
+                <div class="m-block col-span-5 h-[500px] mt-20 reveal-left" style="transform: rotate(-1deg);">
+                    <div class="label-box mono text-[9px]">SECTOR_PORT_NORTH</div>
+                    <video autoplay muted loop playsinline src="media/nest_highlight_1.mp4" class="m-video"></video>
+                </div>
+
+                <!-- 05: The Global Heartbeat -->
+                <div class="col-span-7 flex flex-col justify-end pb-20 pl-24 reveal-right">
+                    <h3 class="synco text-6xl italic chrome-text mb-10 text-right">TOTAL<br>VISUAL<br>ORCHESTRATION.</h3>
+                    <div class="lead-line w-full bg-white/10 mb-8 ml-auto"></div>
+                    <p class="text-xs text-silver/30 text-right uppercase tracking-[0.5em]">Lagos / London / Dubai / New York</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ACT 3: THE LABORATORY (WHITE PHASE / INSTITUTIONAL TRUST) -->
+        <section class="pinned-stage lab-phase" id="specs">
+            <div class="blueprint-grid"></div>
+            
+            <div class="max-w-[1400px] w-full px-12 grid grid-cols-12 gap-24 items-center relative z-10">
+                
+                <div class="col-span-5 space-y-20">
+                    <div>
+                        <div class="mono text-[10px] tracking-[0.6em] mb-6 text-black/30">Service Infrastructure</div>
+                        <h2 class="synco text-6xl font-black">SOVEREIGN<br>INTEGRITY.</h2>
+                    </div>
+                    
+                    <div class="space-y-12">
+                        <div class="border-b border-black/10 pb-8 reveal-data">
+                            <div class="mono text-[9px] mb-2">ACK. LATENCY</div>
+                            <div class="synco text-4xl"><span class="counter" data-val="30">0</span>S AVERAGE</div>
+                        </div>
+                        <div class="border-b border-black/10 pb-8 reveal-data">
+                            <div class="mono text-[9px] mb-2">UPTIME SLA</div>
+                            <div class="synco text-4xl"><span class="counter" data-val="99.99">0.0</span> %</div>
+                        </div>
+                        <div class="border-b border-black/10 pb-8 reveal-data">
+                            <div class="mono text-[9px] mb-2">COMPLIANCE</div>
+                            <div class="synco text-2xl">UL / SOC2 TYPE II</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-7 relative reveal-right">
+                    <img src="media/nest-hero.png" class="w-full grayscale shadow-2xl rounded-sm" id="lab-image" alt="Command Blueprint">
+                    <div class="absolute -bottom-10 -right-10 bg-black text-white p-12 max-w-xs shadow-2xl">
+                        <div class="mono text-[9px] mb-4 text-phosphor">Live System Status</div>
+                        <div class="mono text-[11px] leading-relaxed" id="typewriter-text"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- GOD-TIER BLACK SHIELD FOOTER -->
+        <footer class="relative bg-black pt-96 pb-24 px-12 overflow-hidden border-t border-white/5" id="sovereign-footer">
+            <div class="radiant-footer-border"></div>
+
+            <!-- MACRO BACKDROP VIDEO -->
+            <div class="absolute top-0 left-0 w-[85%] h-[80%] opacity-20 pointer-events-none z-0">
+                <video autoplay muted loop playsinline preload="none" src="/media/XBAThero-web.mp4" class="w-full h-full object-cover blur-[80px] grayscale"></video>
+                <div class="absolute inset-0" style="background: radial-gradient(circle at 15% 25%, transparent 0%, #000 85%);"></div>
+            </div>
+
+            <div class="footer-watermark">AVZDAX</div>
+            <canvas id="footer-neural-canvas"></canvas>
+
+            <div class="max-w-[1800px] mx-auto relative z-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-16 text-left">
+                <div class="lg:col-span-2 space-y-12 text-left">
+                    <a href="index.html" aria-label="Home" class="hidden md:block"><img src="/media/avzdax-logo.png" alt="AVZDAX Logo" class="h-12 mb-8 hover:opacity-70 transition-all cursor-pointer"></a>
+                    <p class="text-[13px] text-white uppercase tracking-[0.4em] leading-loose max-w-sm text-left">The apex standard in sovereign defense intelligence. Architecting the temporal shield for civilizations.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="social-glass-btn" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="white" class="w-6 h-6"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="#" class="social-glass-btn" aria-label="X (Twitter)">
+                            <svg viewBox="0 0 24 24" fill="white" class="w-6 h-6"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="text-left">
+                    <h4 class="text-white/20 text-[10px] font-mono font-black uppercase tracking-[0.7em] border-b border-white/5 pb-4 italic text-left">Solutions</h4>
+                    <div class="flex flex-col gap-6 text-[14px] font-black uppercase tracking-widest text-white text-left">
+                        <a href="primus.html" class="footer-link-hover text-white">PRIMUS</a>
+                        <a href="nest.html" class="footer-link-hover">NEST</a>
+                        <a href="teletraan.html" class="footer-link-hover">Teletraan</a>
+                        <a href="trion.html" class="footer-link-hover">Trion</a>
+                        <a href="sentinel.html" class="footer-link-hover">Sentinel</a>
+                        <a href="obex.html" class="footer-link-hover">Obex</a>
+                    </div>
+                </div>
+                <div class="text-left">
+                    <h4 class="text-white/20 text-[10px] font-mono font-black uppercase tracking-[0.7em] border-b border-white/5 pb-4 italic text-left">Industries</h4>
+                    <div class="flex flex-col gap-6 text-[14px] font-black uppercase tracking-widest text-white text-left">
+                        <a href="industries.html" class="footer-link-hover italic text-white/70">Oil & Gas</a>
+                        <a href="industries.html" class="footer-link-hover">Government</a>
+                        <a href="industries.html" class="footer-link-hover">Finance & Banking</a>
+                        <a href="industries.html" class="footer-link-hover">Healthcare</a>
+                        <a href="industries.html" class="footer-link-hover">Maritime</a>
+                    </div>
+                </div>
+                <div class="text-left">
+                    <h4 class="text-white/20 text-[10px] font-mono font-black uppercase tracking-[0.7em] border-b border-white/5 pb-4 italic text-left">Mission</h4>
+                    <div class="flex flex-col gap-6 text-[14px] font-black uppercase tracking-widest text-white text-left"><a href="about.html" class="footer-link-hover">About Us</a><a href="careers.html" class="footer-link-hover text-green-500 font-black">Careers</a><a href="news.html" class="footer-link-hover">Newsroom</a><a href="ethics.html" class="footer-link-hover">Ethics Policy</a></div>
+                </div>
+                <div class="text-left">
+                    <h4 class="text-white/20 text-[10px] font-mono font-black uppercase tracking-[0.7em] border-b border-white/5 pb-4 italic text-left">Support</h4>
+                    <div class="flex flex-col gap-6 text-[14px] font-black uppercase tracking-widest text-white text-left"><a href="#" class="footer-link-hover">Help Center</a><a href="#" class="footer-link-hover flex items-center gap-3">Status <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span></a><a href="#" class="footer-link-hover">Privacy Policy</a><a href="#" class="footer-link-hover">Terms</a></div>
+                </div>
+            </div>
+
+            <div class="max-w-[1700px] mx-auto relative z-10 mt-40 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[9px] font-mono text-white/10 uppercase tracking-[0.5em] gap-8">
+                <div class="text-left"><div class="text-[11px] font-mono text-green-500 animate-pulse uppercase tracking-[0.4em]">● GLOBAL NEURAL MESH: OPERATIONAL</div><div class="text-[10px] font-mono text-white/20 uppercase tracking-[0.3em]">Protocol_ID: AVX-7782-X // Enc: AES-4096-Sovereign</div></div>
+                <div class="flex gap-12"><span>SV_HQ: 37.7749° N</span><span>LDN_NODE: 51.5074° N</span><span>LOS_NODE: 6.5244° N</span></div>
+                <span>©2026 AVZDAX CORP. // ALL LOGS CLASSIFIED</span>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+        const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        // --- ENTRANCE ANIMATIONS ---
+        gsap.from("#main-title", { scale: 1.1, opacity: 0, duration: 2, ease: "power4.out" });
+        gsap.from(".reveal-text", { x: -50, opacity: 0, duration: 1.5, delay: 0.5 });
+
+        // --- MOSAIC REVEALS ---
+        document.querySelectorAll(".reveal-up").forEach(el => {
+            gsap.from(el, { y: 100, opacity: 0, duration: 1.5, scrollTrigger: { trigger: el, start: "top 90%" } });
+        });
+        gsap.from(".reveal-left", { x: -100, opacity: 0, duration: 1.5, scrollTrigger: { trigger: ".reveal-left", start: "top 90%" } });
+        gsap.from(".reveal-right", { x: 100, opacity: 0, duration: 1.5, scrollTrigger: { trigger: ".reveal-right", start: "top 90%" } });
+
+        // --- WHITE PHASE & HEADER INVERSION ---
+        gsap.to("#specs", {
+            scrollTrigger: {
+                trigger: "#specs", start: "top top", end: "+=100%", pin: true, scrub: true,
+                onToggle: self => document.getElementById('main-nav').classList.toggle('nav-inverted', self.isActive),
+                onEnter: () => {
+                    gsap.to("body", { backgroundColor: "#ffffff", duration: 0.6 });
+                    initCounters();
+                    initTypewriter();
+                },
+                onLeaveBack: () => gsap.to("body", { backgroundColor: "#030303", duration: 0.6 })
+            }
+        });
+
+        // --- COUNTER ENGINE ---
+        function initCounters() {
+            document.querySelectorAll('.counter').forEach(c => {
+                const target = parseFloat(c.getAttribute('data-val'));
+                gsap.to(c, { innerText: target, duration: 2, snap: { innerText: 0.01 }, ease: "power2.out" });
+            });
+        }
+
+        // --- TYPEWRITER ENGINE ---
+        function initTypewriter() {
+            gsap.to("#typewriter-text", {
+                text: "SYSTEM_VERSION: 4.0\nNODES_ACTIVE: 14,802\nRESPONSE_TEAM: STANDBY\nDOMAIN_LOCK: CONFIRMED",
+                duration: 4,
+                ease: "none"
+            });
+        }
+
+        // --- MOUSE PARALLAX ---
+        window.addEventListener("mousemove", (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 30;
+            const y = (e.clientY / window.innerHeight - 0.5) * 30;
+            gsap.to("#parallax-bg-1, #lab-image", { x: x, y: y, duration: 2, ease: "power2.out" });
+        });
+        // OPTIMIZED FOOTER CANVAS
+        const canvas = document.getElementById('footer-neural-canvas');
+        const ctx = canvas.getContext('2d');
+        let pts = [];
+        function resize() { 
+            const footer = document.getElementById('sovereign-footer');
+            if(!footer) return;
+            canvas.width = window.innerWidth; 
+            canvas.height = footer.offsetHeight; 
+            pts = []; 
+            for(let i=0; i<100; i++) pts.push(new P()); 
+        }
+        class P { 
+            constructor(){ 
+                this.x=Math.random()*canvas.width; 
+                this.y=Math.random()*canvas.height; 
+                this.vx=(Math.random()-0.5)*0.3; 
+                this.vy=(Math.random()-0.5)*0.3; 
+            } 
+            update(){ 
+                this.x+=this.vx; this.y+=this.vy; 
+                if(this.x<0||this.x>canvas.width)this.vx*=-1; 
+                if(this.y<0||this.y>canvas.height)this.vy*=-1; 
+            } 
+            draw(){ 
+                ctx.beginPath(); 
+                ctx.arc(this.x, this.y, 1, 0, Math.PI * 2); 
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.7)'; 
+                ctx.fill(); 
+            } 
+        }
+        let lastTime = 0;
+        function draw(currentTime){
+            if(currentTime - lastTime < 33) { 
+                requestAnimationFrame(draw);
+                return;
+            }
+            lastTime = currentTime;
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            const maxDistSq = 200 * 200;
+            pts.forEach((p,i)=>{
+                p.update(); p.draw();
+                for(let j=i+1;j<pts.length;j++){
+                    const dx = p.x-pts[j].x, dy = p.y-pts[j].y, dSq = dx*dx + dy*dy;
+                    if(dSq < maxDistSq){
+                        const alpha = 0.2 - (dSq/maxDistSq)*0.2;
+                        ctx.beginPath(); ctx.strokeStyle=`rgba(255,255,255,${alpha})`; ctx.lineWidth=1;
+                        ctx.moveTo(p.x,p.y); ctx.lineTo(pts[j].x,pts[j].y); ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(draw);
+        }
+        resize(); draw(); window.addEventListener('resize', resize);
+    </script>
+</body>
+</html>
